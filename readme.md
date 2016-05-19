@@ -1,6 +1,6 @@
-#Star Wars API Scrap
+#Star Wars API Scrape
 
-## ReactJS GitHub Profile Viewer
+## ReactJS Star Wars API Scraper
 
 ###Info:
 
