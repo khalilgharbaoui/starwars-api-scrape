@@ -18,11 +18,11 @@
 - AJAX
 - Bootstrap
 - Webpack
-- GitHub API
+- Star Wars API ( http://swapi.co )
 
 ###Demo:
 
-
+http://starwars-api-scrape.netlify.com
 
 
 ###Installation
@@ -44,3 +44,5 @@ $ bash deploy
 ```
 
 ###TODO:
+
+- a lot 😏
