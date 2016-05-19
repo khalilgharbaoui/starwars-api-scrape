@@ -63,6 +63,6 @@ class Navbar extends React.Component{
 }
 //adding default and defaultPropsTypes to this Component
 Navbar.propTypes = { brand: React.PropTypes.string.isRequired }
-Navbar.defaultProps = { brand: 'Swapi Scrape!' }
+Navbar.defaultProps = { brand: 'StarWars API Scrape!' }
 
 export default Navbar;

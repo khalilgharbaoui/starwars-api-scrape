@@ -114,13 +114,17 @@ class Person extends React.Component {
             Natural habitat: {homeworld.terrain}
           </p>
           <p>
-            Natural habitat gravity: {homeworld.gravity}
+            Birth Year: {person.birth_year}
           </p>
           <p>
             Height: {person.height}
           </p>
           <p>
             Mass: {person.mass}
+          </p>
+
+          <p>
+            Homeworld gravity: {homeworld.gravity}
           </p>
           <p>
             Hair Color: {person.hair_color}
@@ -131,9 +135,7 @@ class Person extends React.Component {
           <p>
             Eye Color: {person.eye_color}
           </p>
-          <p>
-            Birth Year: {person.birth_year}
-          </p>
+
           <p>
             Gender: {person.gender}
           </p>

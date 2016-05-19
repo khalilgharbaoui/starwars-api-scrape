@@ -5,6 +5,8 @@ import App from './components/App';
 import PeapolList from  './components/PeapolList';
 import PlanetsList from  './components/PlanetsList';
 import Person from './components/Person';
+import Resident from './components/Resident';
+
 
 ReactDOM.render((
   <Router history={browserHistory}>

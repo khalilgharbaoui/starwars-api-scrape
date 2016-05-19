@@ -1,6 +1,8 @@
 import React from 'react';
 import $ from 'jquery';
 import Resident from './Resident';
+import ResidentLink from './ResidentLink';
+
 
 
 class ResidentsList extends React.Component {
@@ -9,7 +11,8 @@ class ResidentsList extends React.Component {
     super(props);
 
     this.state = {
-      data: []
+      data: [],
+      key: ''
 
     }
   }
@@ -20,7 +23,8 @@ class ResidentsList extends React.Component {
 
 
 
-    //http://api.jquery.com/jQuery.ajax/
+
+//http://api.jquery.com/jQuery.ajax/
     $.ajax({
       url: url,
       dataType: 'json',
@@ -47,6 +51,9 @@ class ResidentsList extends React.Component {
 
   componentDidMount() {
     this.getData();
+    this.setState({
+      key: Math.random()
+    });
   }
 
   render() {
@@ -56,10 +63,12 @@ class ResidentsList extends React.Component {
           <div className="row">
             <div>
               {this.state.data.map(function(resident, i) {
+
                 return (
-                  <div className = "col-md-3" key={i}>
+                  <div className="col-md-3" key={this.state.key + i}>
                     <h3>
-                      <Resident url={resident+'?format=json'} />
+                      <Resident url={resident} />
+                      <ResidentLink url={resident} />
                     </h3>
                   </div>
                 );

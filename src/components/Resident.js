@@ -3,6 +3,7 @@ import $ from 'jquery';
 
 
 
+
 class Resident extends React.Component {
 
   constructor(props) {
@@ -11,6 +12,7 @@ class Resident extends React.Component {
     this.state = {
       data: []
     }
+
   }
 
 
@@ -19,12 +21,18 @@ class Resident extends React.Component {
 
 
     let component = this;
-    let APIurl = component.props.url;
+    let url = component.props.url;
+
+    if (url === undefined && this.props.params.personId) {
+      let personId = this.props.params.personId;
+      console.log(personId);
+      url = `http://swapi.co/api/people/${personId}/`;
+    }
 
     //http://api.jquery.com/jQuery.ajax/
 
     $.ajax({
-      url: APIurl,
+      url: url + '?format=json',
       dataType: 'json',
       contentType: 'application/json',
       cache: false,
@@ -40,6 +48,8 @@ class Resident extends React.Component {
     })
     .done((data) => {
 
+
+
     })
     .fail(function(data) {
 
@@ -51,10 +61,7 @@ componentDidMount() {
     this.getData();
 }
 
-
-
-
-  render() {
+render() {
 
 
     let resident = this.state.data;
