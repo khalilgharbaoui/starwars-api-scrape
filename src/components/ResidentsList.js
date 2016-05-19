@@ -16,7 +16,7 @@ class ResidentsList extends React.Component {
 
     }
   }
-
+  
   getData() {
     let component = this;
     let url = this.props.url;
@@ -50,10 +50,10 @@ class ResidentsList extends React.Component {
 
 
   componentDidMount() {
-    this.getData();
     this.setState({
       key: Math.random()
     });
+    this.getData();
   }
 
   render() {
