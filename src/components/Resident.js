@@ -15,8 +15,6 @@ class Resident extends React.Component {
 
   }
 
-
-
   getData() {
 
 
@@ -56,19 +54,21 @@ class Resident extends React.Component {
       console.log("Failed but status " + data.status);
     });
 
-}
-componentDidMount() {
+  }
+  componentDidMount() {
     this.getData();
-}
+  }
 
-render() {
+  render() {
 
 
     let resident = this.state.data;
 
     return (
       <div>
-        <h4>{resident.name}</h4>
+        <h4>
+          {resident.name}
+        </h4>
       </div>
     );
   }

@@ -24,7 +24,7 @@ class ResidentsList extends React.Component {
 
 
 
-//http://api.jquery.com/jQuery.ajax/
+    //http://api.jquery.com/jQuery.ajax/
     $.ajax({
       url: url,
       dataType: 'json',
@@ -65,7 +65,9 @@ class ResidentsList extends React.Component {
               {this.state.data.map(function(resident, i) {
 
                 return (
-                  <div className="col-md-3" key={this.state.key + i}>
+                  <div
+                    className="col-md-3"
+                    key={this.state.key + i}>
                     <h3>
                       <Resident url={resident} />
                       <ResidentLink url={resident} />

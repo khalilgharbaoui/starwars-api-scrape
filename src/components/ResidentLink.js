@@ -11,8 +11,6 @@ class ResidentLink extends React.Component {
     return detailsurl.pop();
   }
 
-
-
   render() {
 
     return (

@@ -85,7 +85,9 @@ class PeapolList extends React.Component {
           <div className="row">
             {this.state.data.map(function(person, i) {
               return (
-                <div className = "col-md-4" key={this.state.key + i + Math.random()}>
+                <div
+                  className = "col-md-4"
+                  key={this.state.key + i + Math.random()}>
                   <h3>
                     {person.name}
                   </h3>
