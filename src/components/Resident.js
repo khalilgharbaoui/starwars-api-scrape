@@ -1,9 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
 
-
-
-
 class Resident extends React.Component {
 
   constructor(props) {
@@ -60,10 +57,7 @@ class Resident extends React.Component {
   }
 
   render() {
-
-
     let resident = this.state.data;
-
     return (
       <div>
         <h4>
@@ -73,7 +67,5 @@ class Resident extends React.Component {
     );
   }
 }
-
-
 
 export default Resident;

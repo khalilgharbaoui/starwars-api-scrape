@@ -70,7 +70,7 @@ class ResidentsList extends React.Component {
                     key={this.state.key + i}>
                     <h3>
                       <Resident url={resident} />
-                      <ResidentLink url={resident} />
+                      <ResidentLink url={resident}/>
                     </h3>
                   </div>
                 );

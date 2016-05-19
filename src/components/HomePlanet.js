@@ -2,17 +2,17 @@ import React from 'react';
 import $ from 'jquery';
 
 
-class Resident extends React.Component {
+class HomePlanet extends React.Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      data: []
+      data: null
     }
   }
 
-  getData() {
+  getHomeworldName() {
 
 
     let component = this;
@@ -29,11 +29,10 @@ class Resident extends React.Component {
 
     })
     .success((data) => {
-      component.setState({
 
-        data: data
-
-      });
+      this.setState({
+        data: data.name
+      })
     })
     .done((data) => {
 
@@ -44,19 +43,18 @@ class Resident extends React.Component {
     });
 
   }
-  componentDidMount() {
-    this.getData();
+
+componentDidMount() {
+    this.getHomeworldName();
   }
 
   render() {
     let homeplanet = this.state.data;
     console.log(homeplanet);
-
     return (
-
       <div>
         <h5>
-          Planet: {homeplanet.name}
+          Planet: {homeplanet}
         </h5>
       </div>
     );
@@ -65,4 +63,4 @@ class Resident extends React.Component {
 
 
 
-export default Resident;
+export default HomePlanet;

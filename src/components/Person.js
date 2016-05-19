@@ -87,12 +87,7 @@ class Person extends React.Component {
 
   }
 
-
-
-
-
-
-  componentDidMount() {
+  componentWillMount() {
     this.getData();
   }
 

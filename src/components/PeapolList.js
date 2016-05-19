@@ -1,6 +1,5 @@
 import React from 'react';
 import jQuery from 'jquery';
-import { Link } from 'react-router';
 import PersonLink from './PersonLink';
 import HomePlanet from './HomePlanet';
 import Person from './Person';
@@ -12,12 +11,28 @@ class PeapolList extends React.Component {
     super(props);
 
     this.state = {
-      data: [],
       url: 'http://swapi.co/api/people/?format=json',
       nextpage: '',
       previouspage: '',
-      key: ''
+      key: '',
+      data: []
+
     }
+  }
+
+
+  nextPage(event) {
+    this.setState({
+      url: this.state.nextpage,
+      key: Math.random()
+      }, this.getData());
+  }
+
+  previousPage(event) {
+    this.setState({
+      url: this.state.previouspage,
+      key: Math.random()
+  }, this.getData());
   }
 
   getData() {
@@ -40,7 +55,8 @@ class PeapolList extends React.Component {
       compo.setState({
         data: data.results,
         nextpage: data.next,
-        previouspage: data.previous
+        previouspage: data.previous,
+        key: Math.random()
       });
     })
     .done((data) => {
@@ -52,27 +68,8 @@ class PeapolList extends React.Component {
     });
   }
 
-  nextPage(event) {
-    event.preventDefault();
-    let component = this;
-    this.setState({
-      url: component.state.nextpage,
-      key: Math.random()
-    });
-    this.getData();
-  }
 
-  previousPage(event) {
-    event.preventDefault();
-    let component = this;
-    this.setState({
-      url: component.state.previouspage,
-      key: Math.random()
-    });
-    this.getData();
-  }
-
-  componentWillMount() {
+  componentDidMount() {
     this.getData();
   }
 
@@ -93,7 +90,7 @@ class PeapolList extends React.Component {
                   </h3>
                   Year of birth: {person.birth_year}
                   <HomePlanet url={person.homeworld} />
-                  <PersonLink url={person.url} />
+                  <h4><PersonLink url={person.url} /></h4>
                 </div>
               );
             }, this)}
@@ -103,11 +100,11 @@ class PeapolList extends React.Component {
         <br />
         <br />
 
-        <button
+        <button className="btn btn-primary"
           style={{float: 'left'}}
           onClick={this.previousPage.bind(this)}>
           Previous Page </button>
-        <button
+        <button className="btn btn-primary"
           style={{float: 'right'}}
           onClick={this.nextPage.bind(this)}>
           Next Page </button>
@@ -117,7 +114,5 @@ class PeapolList extends React.Component {
     );
   }
 }
-
-
 
 export default PeapolList;
