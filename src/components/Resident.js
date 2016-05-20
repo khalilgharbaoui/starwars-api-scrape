@@ -20,7 +20,7 @@ class Resident extends React.Component {
 
     if (url === undefined && this.props.params.personId) {
       let personId = this.props.params.personId;
-      console.log(personId);
+      console.log("Resident id: " + personId);
       url = `http://swapi.co/api/people/${personId}/`;
     }
 

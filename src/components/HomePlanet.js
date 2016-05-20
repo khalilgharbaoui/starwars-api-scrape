@@ -13,7 +13,7 @@ class HomePlanet extends React.Component {
   }
 
   getHomeworldName() {
-
+    
 
     let component = this;
     let APIurl = component.props.url;

@@ -7,8 +7,8 @@ class NextButton extends React.Component {
 
 
   pageId() {
-    let url = this.props.url.split(/&page=/);
-    let pageNumber = url.pop();
+    let match = this.props.url.match(/page=(\d+)/);
+    let pageNumber = match.pop();
     return pageNumber;
   }
 

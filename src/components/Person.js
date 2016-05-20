@@ -14,14 +14,13 @@ class Person extends React.Component {
       homeworlddata: []
     }
   }
-  
+
   getData() {
 
     let url = this.props.url;
-
     if (url === undefined && this.props.params.personId) {
       let personId = this.props.params.personId;
-      console.log(personId);
+      console.log("Person id: "+personId);
       url = `http://swapi.co/api/people/${personId}/`;
     }
 
@@ -36,11 +35,8 @@ class Person extends React.Component {
     })
     .success((data) => {
       this.setState({
-
-        data: data,
-
-
-      });
+        data: data
+      })
     })
     .done((data) => {
       this.getHomeworldData();
@@ -52,15 +48,11 @@ class Person extends React.Component {
 
   }
 
-
-
-  getHomeworldData() {
+getHomeworldData() {
 
     let homeworlddataurl = this.state.data.homeworld;
 
-
-
-    //http://api.jquery.com/jQuery.ajax/
+//http://api.jquery.com/jQuery.ajax/
     $.ajax({
       url: homeworlddataurl + '?format=json',
       dataType: 'json',

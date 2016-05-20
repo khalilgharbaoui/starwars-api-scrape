@@ -12,8 +12,8 @@ class PeopleList extends React.Component {
     super(props);
 
     this.state = {
-      nextpage: '',
-      previouspage: '',
+      nextpage: null,
+      previouspage: null,
       data: []
     }
   }
@@ -30,7 +30,7 @@ class PeopleList extends React.Component {
     //http://api.jquery.com/jQuery.ajax/
 
     jQuery.ajax({
-      url: `http://swapi.co/api/people/?format=json&page=${pageId}`,
+      url: `http://swapi.co/api/people/?page=${pageId}&format=json`,
       dataType: 'json',
       contentType: 'application/json',
       cache: true,
@@ -88,7 +88,7 @@ class PeopleList extends React.Component {
                   </h3>
                   Year of birth: {person.birth_year}
                   {person.homeworld &&
-                    <HomePlanet url={person.homeworld + '?format=json'} />
+                    <HomePlanet url={person.homeworld} />
                   }
                   <h4>
                     <PersonLink url={person.url} />

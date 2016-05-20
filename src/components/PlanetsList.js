@@ -12,8 +12,8 @@ class PlanetsList extends React.Component {
     super(props);
 
     this.state = {
-      nextpage: '',
-      previouspage: '',
+      nextpage: null,
+      previouspage: null,
       data: []
     }
   }
@@ -31,7 +31,7 @@ class PlanetsList extends React.Component {
     //http://api.jquery.com/jQuery.ajax/
 
     jQuery.ajax({
-      url: `http://swapi.co/api/planets/?format=json&page=${pageId}`,
+      url: `http://swapi.co/api/planets/?page=${pageId}&format=json`,
       dataType: 'json',
       contentType: 'application/json',
       cache: true,
