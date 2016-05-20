@@ -14,7 +14,7 @@ class Person extends React.Component {
       homeworlddata: []
     }
   }
-
+  
   getData() {
 
     let url = this.props.url;
@@ -91,8 +91,6 @@ class Person extends React.Component {
     this.getData();
   }
 
-
-
   render() {
     let person = this.state.data;
     let homeworld = this.state.homeworlddata;
@@ -133,10 +131,10 @@ class Person extends React.Component {
           </p>
         </div>
         <div className="col-md-12">
-        <h1>
-          Also From {person.name}s Planet {homeworld.name}:
-        </h1>
-      </div>
+          <h1>
+            Also From {person.name}s Planet {homeworld.name}:
+          </h1>
+        </div>
         {person.homeworld &&
           <ResidentsList url={person.homeworld + '?format=json'} />
         }
