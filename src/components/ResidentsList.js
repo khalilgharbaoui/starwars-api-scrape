@@ -9,14 +9,12 @@ class ResidentsList extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       data: [],
       key: ''
-
     }
   }
-  
+
   getData() {
     let component = this;
     let url = this.props.url;
@@ -29,7 +27,7 @@ class ResidentsList extends React.Component {
       url: url,
       dataType: 'json',
       contentType: 'application/json',
-      cache: false,
+      cache: true,
       method: 'GET'
     })
     .success((data) => {
@@ -58,10 +56,8 @@ class ResidentsList extends React.Component {
 
   render() {
     return (
-      <div>
         <div className="container">
           <div className="row">
-            <div>
               {this.state.data.map(function(resident, i) {
 
                 return (
@@ -75,12 +71,10 @@ class ResidentsList extends React.Component {
                   </div>
                 );
               }, this)}
-            </div>
 
           </div>
 
         </div>
-      </div>
     );
   }
 }

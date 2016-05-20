@@ -1,6 +1,8 @@
 import React from 'react';
 import jQuery from 'jquery';
 import { Link } from 'react-router';
+import NextButton from './NextButton';
+import PreviousButton from './PreviousButton';
 
 
 
@@ -10,32 +12,34 @@ class PlanetsList extends React.Component {
     super(props);
 
     this.state = {
-      data: [],
-      url: 'http://swapi.co/api/planets/?format=json',
       nextpage: '',
       previouspage: '',
-      key:''
+      data: []
     }
   }
 
   getData() {
+    let component = this;
+    let pageId = component.props.params.pageId;
+    if (component.props.params.pageId === undefined) {
+      let pageId = 1;
+    } else {
+      let pageId = component.props.params.pageId;
+    }
 
-
-    let compo = this;
-    let APIurl = compo.state.url;
 
     //http://api.jquery.com/jQuery.ajax/
 
     jQuery.ajax({
-      url: APIurl,
+      url: `http://swapi.co/api/planets/?format=json&page=${pageId}`,
       dataType: 'json',
       contentType: 'application/json',
-      cache: false,
+      cache: true,
       method: 'GET'
 
     })
     .success((data) => {
-      compo.setState({
+      component.setState({
         data: data.results,
         nextpage: data.next,
         previouspage: data.previous
@@ -50,33 +54,33 @@ class PlanetsList extends React.Component {
     });
   }
 
-  nextPage(event) {
-    event.preventDefault();
-    let component = this;
-    this.setState({
-      url: component.state.nextpage,
-      key: Math.random()
-    });
-    this.getData();
-  }
 
-  previousPage(event) {
-    event.preventDefault();
-    let component = this;
-    this.setState({
-      url: component.state.previouspage,
-      key: Math.random()
-    });
-    this.getData();
-  }
 
   componentDidMount() {
     this.getData();
   }
 
-
-
   render() {
+    if(this.state.previouspage === null){
+      var previouspagebutton = '';
+    }
+    else{
+      var previouspagebutton =
+      <PreviousButton
+        url={this.state.previouspage}
+        onClick={this.getData()}
+        type={'planets'}  />
+    }
+    if(this.state.nextpage === null){
+      var nextpagebutton = '';
+    }
+    else{
+      var nextpagebutton =
+      <NextButton
+        url={this.state.nextpage}
+        onClick={this.getData()}
+        type={'planets'} />
+    }
     return(
       <div>
         <div className="container">
@@ -84,8 +88,8 @@ class PlanetsList extends React.Component {
             {this.state.data.map(function(planet, i) {
               return (
                 <div
-                  className = "col-md-4"
-                  key={this.state.key + i}>
+                  className = "col-md-4 bg-success"
+                  key={i}>
                   <h3>
                     {planet.name}
                   </h3>
@@ -143,15 +147,8 @@ class PlanetsList extends React.Component {
 </div>
 <br />
 <br />
-
-<button
-  style={{float: 'left'}}
-  onClick={this.previousPage.bind(this)}>
-  Previous Page </button>
-<button
-  style={{float: 'right'}}
-  onClick={this.nextPage.bind(this)}>
-  Next Page </button>
+{previouspagebutton}
+{nextpagebutton}
 <br />
 <br />
 </div>

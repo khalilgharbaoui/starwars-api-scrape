@@ -24,7 +24,7 @@ class HomePlanet extends React.Component {
       url: APIurl,
       dataType: 'json',
       contentType: 'application/json',
-      cache: false,
+      cache: true,
       method: 'GET'
 
     })
@@ -33,6 +33,8 @@ class HomePlanet extends React.Component {
       this.setState({
         data: data.name
       })
+      console.log(this.state.data);
+
     })
     .done((data) => {
 
@@ -44,17 +46,22 @@ class HomePlanet extends React.Component {
 
   }
 
-componentDidMount() {
+  componentDidMount() {
     this.getHomeworldName();
   }
 
   render() {
-    let homeplanet = this.state.data;
-    console.log(homeplanet);
+
+    if(this.state.data === null){
+      var homeplanet = '';
+
+    } else {
+      var homeplanet = 'Planet: ' + this.state.data;
+    }
     return (
       <div>
         <h5>
-          Planet: {homeplanet}
+          {homeplanet}
         </h5>
       </div>
     );

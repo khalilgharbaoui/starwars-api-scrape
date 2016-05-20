@@ -1,5 +1,5 @@
 import React from 'react';
-import jQuery from 'jquery';
+import $ from 'jquery';
 import ResidentsList from './ResidentsList';
 import HomePlanet from './HomePlanet';
 
@@ -17,20 +17,20 @@ class Person extends React.Component {
 
   getData() {
 
-    let u = this.props.url;
+    let url = this.props.url;
 
-    if (u === undefined && this.props.params.personId) {
+    if (url === undefined && this.props.params.personId) {
       let personId = this.props.params.personId;
       console.log(personId);
-      u = `http://swapi.co/api/people/${personId}/`;
+      url = `http://swapi.co/api/people/${personId}/`;
     }
 
     //http://api.jquery.com/jQuery.ajax/
-    jQuery.ajax({
-      url: u + '?format=json',
+    $.ajax({
+      url: url + '?format=json',
       dataType: 'json',
       contentType: 'application/json',
-      cache: false,
+      cache: true,
       method: 'GET'
 
     })
@@ -61,11 +61,11 @@ class Person extends React.Component {
 
 
     //http://api.jquery.com/jQuery.ajax/
-    jQuery.ajax({
+    $.ajax({
       url: homeworlddataurl + '?format=json',
       dataType: 'json',
       contentType: 'application/json',
-      cache: false,
+      cache: true,
       method: 'GET'
 
     })
@@ -96,12 +96,9 @@ class Person extends React.Component {
   render() {
     let person = this.state.data;
     let homeworld = this.state.homeworlddata;
-
-    console.log(person);
-
     return (
       <div>
-        <div className="well col-md-12">
+        <div className="well col-md-5">
           <h1>
             {person.name}s details:
           </h1>
@@ -135,9 +132,11 @@ class Person extends React.Component {
             Gender: {person.gender}
           </p>
         </div>
+        <div className="col-md-12">
         <h1>
           Also From {person.name}s Planet {homeworld.name}:
         </h1>
+      </div>
         {person.homeworld &&
           <ResidentsList url={person.homeworld + '?format=json'} />
         }

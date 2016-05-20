@@ -30,7 +30,7 @@ class Resident extends React.Component {
       url: url + '?format=json',
       dataType: 'json',
       contentType: 'application/json',
-      cache: false,
+      cache: true,
       method: 'GET'
 
     })
