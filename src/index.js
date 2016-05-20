@@ -6,8 +6,6 @@ import Welcome from './components/Welcome';
 import PeopleList from  './components/PeopleList';
 import PlanetsList from  './components/PlanetsList';
 import Person from './components/Person';
-import Resident from './components/Resident';
-
 
 ReactDOM.render((
   <Router history={browserHistory}>

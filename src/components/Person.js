@@ -15,12 +15,11 @@ class Person extends React.Component {
     }
   }
 
-  getData() {
-
+  getPersonData() {
     let url = this.props.url;
     if (url === undefined && this.props.params.personId) {
       let personId = this.props.params.personId;
-      console.log("Person id: "+personId);
+      console.log("Person ID: " + personId);
       url = `http://swapi.co/api/people/${personId}/`;
     }
 
@@ -29,9 +28,7 @@ class Person extends React.Component {
       url: url + '?format=json',
       dataType: 'json',
       contentType: 'application/json',
-      cache: true,
       method: 'GET'
-
     })
     .success((data) => {
       this.setState({
@@ -42,7 +39,6 @@ class Person extends React.Component {
       this.getHomeworldData();
     })
     .fail(function(data) {
-
       console.log("Failed but status " + data.status);
     });
 
@@ -54,10 +50,9 @@ getHomeworldData() {
 
 //http://api.jquery.com/jQuery.ajax/
     $.ajax({
-      url: homeworlddataurl + '?format=json',
       dataType: 'json',
+      url: homeworlddataurl + '?format=json',
       contentType: 'application/json',
-      cache: true,
       method: 'GET'
 
     })
@@ -80,7 +75,7 @@ getHomeworldData() {
   }
 
   componentWillMount() {
-    this.getData();
+    this.getPersonData();
   }
 
   render() {

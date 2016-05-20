@@ -1,5 +1,5 @@
 import React from 'react';
-import jQuery from 'jquery';
+import $ from 'jquery';
 import PersonLink from './PersonLink';
 import HomePlanet from './HomePlanet';
 import NextButton from './NextButton';
@@ -18,39 +18,37 @@ class PeopleList extends React.Component {
     }
   }
 
-  getData() {
-    let component = this;
-    let pageId = component.props.params.pageId;
-    if (component.props.params.pageId === undefined) {
-      let pageId = 1;
-    } else {
-      let pageId = component.props.params.pageId;
-    }
-
+  getPeopleData() {
+    let pageId = this.props.params.pageId;
+    console.log("Page ID is: " + pageId);
     //http://api.jquery.com/jQuery.ajax/
 
-    jQuery.ajax({
-      url: `http://swapi.co/api/people/?page=${pageId}&format=json`,
+    $.ajax({
       dataType: 'json',
+      url: `http://swapi.co/api/people/?page=${pageId}&format=json`,
       contentType: 'application/json',
-      cache: true,
       method: 'GET'
     })
     .success((data) => {
-      component.setState({
-        nextpage: data.next,
-        previouspage: data.previous,
-        data: data.results
-      });
+
+    })
+    .done((data) => {
+
+      this.setState({
+          nextpage: data.next,
+          previouspage: data.previous,
+          data: data.results
+        })
+
     })
     .fail(function(data) {
-      console.log("1.Failed but status " + data.status);
+      console.log("Failed with status " + data.status);
     });
   }
 
 
   componentDidMount() {
-    this.getData();
+    this.getPeopleData();
   }
 
   render() {
@@ -61,7 +59,7 @@ class PeopleList extends React.Component {
       var previouspagebutton =
       <PreviousButton
         url={this.state.previouspage}
-        onClick={this.getData()}
+        onClick={this.getPeopleData()}
         type={'people'}  />
     }
     if(this.state.nextpage === null){
@@ -71,7 +69,7 @@ class PeopleList extends React.Component {
       var nextpagebutton =
       <NextButton
         url={this.state.nextpage}
-        onClick={this.getData()}
+        onClick={this.getPeopleData()}
         type={'people'} />
     }
     return(
@@ -88,8 +86,7 @@ class PeopleList extends React.Component {
                   </h3>
                   Year of birth: {person.birth_year}
                   {person.homeworld &&
-                    <HomePlanet url={person.homeworld} />
-                  }
+                    <HomePlanet url={person.homeworld + '?format=json'} />}
                   <h4>
                     <PersonLink url={person.url} />
                   </h4>

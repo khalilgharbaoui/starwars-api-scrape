@@ -20,14 +20,14 @@ class ResidentsList extends React.Component {
     let url = this.props.url;
 
 
-
+    
 
     //http://api.jquery.com/jQuery.ajax/
     $.ajax({
       url: url,
       dataType: 'json',
       contentType: 'application/json',
-      cache: true,
+      cache: false,
       method: 'GET'
     })
     .success((data) => {

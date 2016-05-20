@@ -8,12 +8,12 @@ class HomePlanet extends React.Component {
     super(props);
 
     this.state = {
-      data: null
+      data: 'not loaded'
     }
   }
 
   getHomeworldName() {
-    
+
 
     let component = this;
     let APIurl = component.props.url;
@@ -21,10 +21,9 @@ class HomePlanet extends React.Component {
     //http://api.jquery.com/jQuery.ajax/
 
     $.ajax({
-      url: APIurl,
       dataType: 'json',
+      url: APIurl,
       contentType: 'application/json',
-      cache: true,
       method: 'GET'
 
     })
@@ -33,8 +32,6 @@ class HomePlanet extends React.Component {
       this.setState({
         data: data.name
       })
-      console.log(this.state.data);
-
     })
     .done((data) => {
 

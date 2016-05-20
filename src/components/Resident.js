@@ -12,7 +12,7 @@ class Resident extends React.Component {
 
   }
 
-  getData() {
+  getResidentData() {
 
 
     let component = this;
@@ -30,7 +30,7 @@ class Resident extends React.Component {
       url: url + '?format=json',
       dataType: 'json',
       contentType: 'application/json',
-      cache: true,
+      cache: false,
       method: 'GET'
 
     })
@@ -53,7 +53,7 @@ class Resident extends React.Component {
 
   }
   componentDidMount() {
-    this.getData();
+    this.getResidentData();
   }
 
   render() {

@@ -1,6 +1,5 @@
 import React from 'react';
-import jQuery from 'jquery';
-import { Link } from 'react-router';
+import $ from 'jquery';
 import NextButton from './NextButton';
 import PreviousButton from './PreviousButton';
 
@@ -14,29 +13,26 @@ class PlanetsList extends React.Component {
     this.state = {
       nextpage: null,
       previouspage: null,
-      data: []
+      data:[]
     }
   }
 
-  getData() {
+  getPlanetsData() {
     let component = this;
     let pageId = component.props.params.pageId;
-    if (component.props.params.pageId === undefined) {
-      let pageId = 1;
-    } else {
-      let pageId = component.props.params.pageId;
-    }
+    console.log("Page ID is: " + pageId);
+
+
 
 
     //http://api.jquery.com/jQuery.ajax/
 
-    jQuery.ajax({
-      url: `http://swapi.co/api/planets/?page=${pageId}&format=json`,
+    $.ajax({
       dataType: 'json',
+      url: `http://swapi.co/api/planets/?page=${pageId}&format=json`,
       contentType: 'application/json',
-      cache: true,
       method: 'GET'
-
+      
     })
     .success((data) => {
       component.setState({
@@ -57,7 +53,7 @@ class PlanetsList extends React.Component {
 
 
   componentDidMount() {
-    this.getData();
+    this.getPlanetsData();
   }
 
   render() {
@@ -68,7 +64,7 @@ class PlanetsList extends React.Component {
       var previouspagebutton =
       <PreviousButton
         url={this.state.previouspage}
-        onClick={this.getData()}
+        onClick={this.getPlanetsData()}
         type={'planets'}  />
     }
     if(this.state.nextpage === null){
@@ -78,7 +74,7 @@ class PlanetsList extends React.Component {
       var nextpagebutton =
       <NextButton
         url={this.state.nextpage}
-        onClick={this.getData()}
+        onClick={this.getPlanetsData()}
         type={'planets'} />
     }
     return(

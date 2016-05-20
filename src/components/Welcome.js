@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 
 class Welcome extends React.Component{
 
@@ -7,7 +7,7 @@ class Welcome extends React.Component{
     super();
 
   }
-
+  
   render(){
     return (
 
