@@ -38,7 +38,7 @@ class Person extends React.Component {
     .done((data) => {
       this.getHomeworldData();
     })
-    .fail(function(data) {
+    .fail((data) => {
       console.log("Failed but status " + data.status);
     });
 
@@ -67,7 +67,7 @@ getHomeworldData() {
     .done((data) => {
       console.log(this.state.homeworlddata);
     })
-    .fail(function(data) {
+    .fail((data) => {
 
       console.log("Failed but status " + data.status);
     });
@@ -126,7 +126,6 @@ getHomeworldData() {
           <ResidentsList url={person.homeworld + '?format=json'} />
         }
       </div>
-
     );
   }
 }

@@ -6,23 +6,16 @@ import {Link} from 'react-router';
 class PreviousButton extends React.Component {
 
 
-  pageId() {
+  render() {
     let match = this.props.url.match(/page=(\d+)/);
     let pageNumber = match.pop();
-    return pageNumber;
-  }
 
-
-
-
-  render() {
-    let component = this;
     return (
       <div>
         <Link
-          to={`/${this.props.type}/${this.pageId()}`}
+          to={`/${this.props.type}/${pageNumber}`}
           url={this.props.url}
-          className="btn btn-primary" style={{float: 'left'}} >Previous Page</Link>
+          className="btn btn-primary" style={{float: 'left'}} >Previews Page</Link>
         <br />
       </div>
     );

@@ -8,7 +8,7 @@ class HomePlanet extends React.Component {
     super(props);
 
     this.state = {
-      data: 'not loaded'
+      data: 'loading...'
     }
   }
 
@@ -17,26 +17,22 @@ class HomePlanet extends React.Component {
 
     let component = this;
     let APIurl = component.props.url;
-
-    //http://api.jquery.com/jQuery.ajax/
-
     $.ajax({
       dataType: 'json',
-      url: APIurl,
+      url: APIurl + '?format=json',
       contentType: 'application/json',
       method: 'GET'
 
     })
     .success((data) => {
-
       this.setState({
-        data: data.name
-      })
+        data: data
+      });
     })
     .done((data) => {
 
     })
-    .fail(function(data) {
+    .fail((data) => {
 
       console.log("Failed but status " + data.status);
     });
@@ -48,17 +44,10 @@ class HomePlanet extends React.Component {
   }
 
   render() {
-
-    if(this.state.data === null){
-      var homeplanet = '';
-
-    } else {
-      var homeplanet = 'Planet: ' + this.state.data;
-    }
     return (
       <div>
         <h5>
-          {homeplanet}
+          {this.state.data.name ? ('Planet: ' + this.state.data.name) : ''}
         </h5>
       </div>
     );

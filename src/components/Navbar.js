@@ -47,7 +47,7 @@ class Navbar extends React.Component{
                 <Link to={`/people/1`}>People</Link>
               </li>
               <li>
-                <Link to={"/planets/1"}>Planets</Link>
+                <Link to={`/planets/1`}>Planets</Link>
               </li>
               <li>
                 <Link to={"#"}>
