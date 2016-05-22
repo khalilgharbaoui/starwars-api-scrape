@@ -22,12 +22,7 @@ class PlanetsList extends React.Component {
   getPlanetsData() {
     let component = this;
     let pageId = component.props.params.pageId;
-    console.log("Page ID is: " + pageId);
-
-
-
-
-    //http://api.jquery.com/jQuery.ajax/
+    console.log("Current Page ID is: " + pageId);
 
     $.ajax({
       dataType: 'json',
@@ -53,10 +48,10 @@ class PlanetsList extends React.Component {
     });
   }
 
-componentDidMount() {
+  componentDidMount() {
     this.getPlanetsData();
   }
-  
+
   updatePage(){
     // without this if statement there is an infinate loop!!
     let component = this;
@@ -74,7 +69,7 @@ componentDidMount() {
             {this.state.data.map(function(planet, i) {
               return (
                 <div
-                  className = "col-md-4 bg-success"
+                  className = "bg-success"
                   key={i}>
                   <h3>
                     {planet.name}
@@ -119,11 +114,16 @@ componentDidMount() {
       {planet.population}
     </strong>
   </p>
-  {/*<div>{planet.residents.map(function(residenturl, i) {
-    return (
-    <p key={i}>{residenturl}</p>
-  );
-}, this)}</div>*/}
+  <div className="bg-warning">
+    {planet.residents.map(function(residenturl, i) {
+      return (
+        <p key={i}>
+
+          {residenturl}
+        </p>
+      );
+    }, this)}
+  </div>
 </div>
 );
 }, this)}
@@ -131,11 +131,15 @@ componentDidMount() {
 
 </div>
 </div>
+
 <br />
+<Pagination
+  next={this.state.next}
+  previous={this.state.previous}
+  type={'planets'}
+  onClick={this.updatePage()} />
 <br />
-<Pagination next={this.state.next} previous={this.state.previous} type={'planets'} onClick={this.updatePage()} />
-<br />
-<br />
+
 </div>
 );
 }

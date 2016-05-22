@@ -7,14 +7,8 @@ import { Link } from 'react-router';
 
 class Pagination extends React.Component {
 
-  constructor(props) {
-    super(props);
 
-
-  }
-
-
-  render() {
+render() {
 
     return(
       <div className="container">
