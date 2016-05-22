@@ -10,14 +10,13 @@ class PersonLink extends React.Component {
     return url.pop();
   }
 
-
+  
 
   render() {
     return (
       <div>
         <Link
-          to={`/person/${this.personId()}`}
-          url={this.props.url}>details</Link>
+          to={`/person/${this.personId()}`}>details</Link>
         <br />
       </div>
     );

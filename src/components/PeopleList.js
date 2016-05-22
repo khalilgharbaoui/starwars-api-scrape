@@ -3,14 +3,19 @@ import $ from 'jquery';
 import PersonLink from './PersonLink';
 import HomePlanet from './HomePlanet';
 import Pagination from './Pagination';
+import { Link } from 'react-router';
+
 
 class PeopleList extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
-      data: []
+      data: [],
+      next: 'http://swapi.co/api/people/?page=2&format=json',
+      previous: null,
+      currentpage: '1'
     }
   }
 
@@ -24,11 +29,26 @@ getPeopleData() {
       method: 'GET'
     })
     .success((data) => { })
-    .done((data) => { this.setState({ data: data.results }); })
+    .done((data) => { this.setState({
+       data: data.results,
+       next: data.next,
+       previous: data.previous,
+       currentpage: component.props.params.pageId
+     });
+    })
     .fail((data) => { console.log( "Failed with status " + data.status ); });
   }
+
   componentDidMount() {
     this.getPeopleData();
+  }
+
+  updatePage(){
+    let component = this;
+    // without this if statement there is an infinate loop!!
+    if (this.state.currentpage !== this.props.params.pageId) {
+      this.getPeopleData();
+    }
   }
 
 render() {
@@ -58,7 +78,7 @@ render() {
           }
           </div>
         </div>
-        <Pagination pageId={this.props.params.pageId} onClick={this.getPeopleData()}/>
+        <Pagination next={this.state.next} previous={this.state.previous} type={'people'} onClick={this.updatePage()} />
       </div>
     );
   }

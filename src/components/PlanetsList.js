@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
-import NextButton from './NextButton';
-import PreviousButton from './PreviousButton';
+import Pagination from './Pagination';
+
 
 
 
@@ -11,9 +11,11 @@ class PlanetsList extends React.Component {
     super(props);
 
     this.state = {
-      nextpage: null,
-      previouspage: null,
-      data:[]
+      data:[],
+      next: 'http://swapi.co/api/planets/?page=2&format=json',
+      previous: null,
+      currentpage: '1'
+
     }
   }
 
@@ -32,13 +34,14 @@ class PlanetsList extends React.Component {
       url: `http://swapi.co/api/planets/?page=${pageId}&format=json`,
       contentType: 'application/json',
       method: 'GET'
-      
+
     })
     .success((data) => {
       component.setState({
         data: data.results,
-        nextpage: data.next,
-        previouspage: data.previous
+        next: data.next,
+        previous: data.previous,
+        currentpage: component.props.params.pageId
       });
     })
     .done((data) => {
@@ -50,33 +53,20 @@ class PlanetsList extends React.Component {
     });
   }
 
-
-
-  componentDidMount() {
+componentDidMount() {
     this.getPlanetsData();
+  }
+  
+  updatePage(){
+    // without this if statement there is an infinate loop!!
+    let component = this;
+    if (this.state.currentpage !== this.props.params.pageId) {
+      this.getPlanetsData();
+    }
   }
 
   render() {
-    if(this.state.previouspage === null){
-      var previouspagebutton = '';
-    }
-    else{
-      var previouspagebutton =
-      <PreviousButton
-        url={this.state.previouspage}
-        onClick={this.getPlanetsData()}
-        type={'planets'}  />
-    }
-    if(this.state.nextpage === null){
-      var nextpagebutton = '';
-    }
-    else{
-      var nextpagebutton =
-      <NextButton
-        url={this.state.nextpage}
-        onClick={this.getPlanetsData()}
-        type={'planets'} />
-    }
+
     return(
       <div>
         <div className="container">
@@ -143,8 +133,7 @@ class PlanetsList extends React.Component {
 </div>
 <br />
 <br />
-{previouspagebutton}
-{nextpagebutton}
+<Pagination next={this.state.next} previous={this.state.previous} type={'planets'} onClick={this.updatePage()} />
 <br />
 <br />
 </div>
