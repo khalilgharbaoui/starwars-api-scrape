@@ -1,16 +1,17 @@
 import React from 'react';
 import $ from 'jquery';
 
-
 class HomePlanet extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       data: 'not loaded'
     }
   }
+
+
 
   getHomeworldName() {
 
@@ -43,7 +44,7 @@ class HomePlanet extends React.Component {
 
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getHomeworldName();
   }
 
@@ -63,7 +64,7 @@ class HomePlanet extends React.Component {
       </div>
     );
   }
-}
+  }
 
 
 

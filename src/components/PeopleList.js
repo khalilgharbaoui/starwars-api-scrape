@@ -45,7 +45,7 @@ getPeopleData() {
 
   updatePage(){
     let component = this;
-    // without this if statement there is an infinate loop!!
+    // NOTE without this if statement there is an infinate loop
     if (this.state.currentpage !== this.props.params.pageId) {
       this.getPeopleData();
     }
@@ -65,9 +65,9 @@ render() {
                     {person.name}
                   </h3>
                   Year of birth: {person.birth_year}
-                  {person.homeworld &&
+
                     <HomePlanet url={person.homeworld} />
-                  }
+
                   <h4>
                   {person.url &&
                     <PersonLink url={person.url} />}
